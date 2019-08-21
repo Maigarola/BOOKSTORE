@@ -3,13 +3,16 @@
   padding: 0px;
 }
 header {
-  height: 150px;
+  height: 100px;
 }
 body {
   margin: 20px;
 }
 .myitems {
   display: flex;
+}
+.mybook {
+  margin: 5px;
 }
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {

@@ -27,7 +27,7 @@ fetch(url, {
         for (let i = 0; i < datos.length; i++) {
 
             let mylibro = document.createElement("div");
-            mylibro.setAttribute("class", "flip-card");
+            mylibro.setAttribute("class", "mybook flip-card");
 
             let newlibro = document.createElement("div"); // creamos div donde guardaremos el libro
             newlibro.setAttribute("class", "flip-card-inner"); // asignamos la class para que rote
@@ -44,13 +44,16 @@ fetch(url, {
             let bookback = document.createElement("div"); //creamos div para back
             bookback.setAttribute("class", "flip-card-back");
 
-            let titulo = document.createElement("h1");
+            let titulo = document.createElement("h5");
             let descripcion = document.createElement("p");
             let masinfo = document.createElement("button");
 
-            titulo = datos[i].title;
-            descripcion = datos[i].description;
+            titulo.innerHTML = datos[i].title;
+            descripcion.innerHTML = datos[i].description;
+            masinfo.setAttribute("class", "btn btn-danger");
+            masinfo.innerHTML = "Más info";
 
+            bookback.append(titulo, descripcion, masinfo);
 
 
             mylibro.append(newlibro);
@@ -58,30 +61,10 @@ fetch(url, {
             newlibro.append(bookback);
 
             sitiolibro.append(mylibro);
-            // <div id="libro" class="flip-card-inner">
-            // template += `
-            // <div class="flip-card-front">
-            //         <img src="./images/gatito.jpg" alt="Avatar" style="height:300px; width: 200px">
-            //     </div>
-            //     <div class="flip-card-back">
-            //         <h1>Titulo</h1>
-            //         <p>Descripción</p>
-            //         <button class="btn btn-danger">Más Info</button>
-            //     </div>
-            //   `;
-
-            // newlibro.innerHTML = template;
         }
 
     }
-    // <div class="flip-card-front">
-    //     <img src="./images/gatito.jpg" alt="Avatar" style="height:300px; width: 200px">
-    // </div>
-    // <div class="flip-card-back">
-    //     <h1>Titulo</h1>
-    //     <p>Descripción</p>
-    //     <button class="btn btn-danger">Más Info</button>
-    // </div>
+
 
 }).catch(function (error) {
     console.log("Request failed: " + error.message);
