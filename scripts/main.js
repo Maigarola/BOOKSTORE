@@ -43,12 +43,14 @@ fetch(url, {
 
             let titulo = document.createElement("h5");
             let descripcion = document.createElement("p");
-            let masinfo = document.createElement("button");
-
+            let masinfo = document.createElement("a");
             titulo.innerHTML = datos[i].title;
             descripcion.innerHTML = datos[i].description;
             masinfo.setAttribute("class", "btn btn-danger");
             masinfo.innerHTML = "Más info";
+
+            masinfo.setAttribute("data-fancybox", "gallery");
+            masinfo.setAttribute("href", datos[i].detail);
 
             bookback.append(titulo, descripcion, masinfo);
 
@@ -66,14 +68,15 @@ fetch(url, {
         let s = document.getElementById("tsearch").value;
 
         for (let i = 0; i < books.length; i++) {
-
             if (books[i].title.includes(s) || books[i].description.includes(s)) {
-                console.log(books[i].title);
-                console.log(books[i].description);
                 bfiltered.push(books[i]);
             }
         }
-        libros(bfiltered);
+        if (bfiltered.length == 0) {
+            document.getElementById("libro").innerHTML = "NO FILTERED CRITERIA";
+        }
+        else { libros(bfiltered); }
+
     }
 }).catch(function (error) {
     console.log("Request failed: " + error.message);
