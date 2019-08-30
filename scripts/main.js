@@ -15,14 +15,11 @@ fetch(url, {
     data = json;
 
     let books = data.books;
-    console.log(books);
     libros(books);
-
+    document.getElementById("bsearch").addEventListener("click", () => myfilter(books));
     function libros(datos) {
 
         let sitiolibro = document.getElementById("libro");
-
-
 
         for (let i = 0; i < datos.length; i++) {
 
@@ -42,7 +39,7 @@ fetch(url, {
             bookfront.append(caratula);
 
             let bookback = document.createElement("div"); //creamos div para back
-            bookback.setAttribute("class", "flip-card-back");
+            bookback.setAttribute("class", "flip-card-back"); //asignamos la class para que gire
 
             let titulo = document.createElement("h5");
             let descripcion = document.createElement("p");
@@ -55,7 +52,6 @@ fetch(url, {
 
             bookback.append(titulo, descripcion, masinfo);
 
-
             mylibro.append(newlibro);
             newlibro.append(bookfront);
             newlibro.append(bookback);
@@ -64,8 +60,21 @@ fetch(url, {
         }
 
     }
+    function myfilter() {
+        document.getElementById("libro").innerHTML = "";
+        let bfiltered = [];
+        let s = document.getElementById("tsearch").value;
 
+        for (let i = 0; i < books.length; i++) {
 
+            if (books[i].title.includes(s) || books[i].description.includes(s)) {
+                console.log(books[i].title);
+                console.log(books[i].description);
+                bfiltered.push(books[i]);
+            }
+        }
+        libros(bfiltered);
+    }
 }).catch(function (error) {
     console.log("Request failed: " + error.message);
 });
